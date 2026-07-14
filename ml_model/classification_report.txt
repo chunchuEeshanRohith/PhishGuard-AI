@@ -1,0 +1,71 @@
+--- PHISHING DETECTION CLASSIFICATION REPORT ---
+
+--- Logistic Regression ---
+              precision    recall  f1-score   support
+
+           0       0.94      0.90      0.92       980
+           1       0.92      0.95      0.94      1231
+
+    accuracy                           0.93      2211
+   macro avg       0.93      0.93      0.93      2211
+weighted avg       0.93      0.93      0.93      2211
+
+Confusion Matrix:
+[[ 884   96]
+ [  61 1170]]
+
+--- Decision Tree ---
+              precision    recall  f1-score   support
+
+           0       0.97      0.96      0.97       980
+           1       0.97      0.98      0.97      1231
+
+    accuracy                           0.97      2211
+   macro avg       0.97      0.97      0.97      2211
+weighted avg       0.97      0.97      0.97      2211
+
+Confusion Matrix:
+[[ 943   37]
+ [  27 1204]]
+
+--- Random Forest ---
+              precision    recall  f1-score   support
+
+           0       0.98      0.96      0.97       980
+           1       0.97      0.99      0.98      1231
+
+    accuracy                           0.97      2211
+   macro avg       0.98      0.97      0.97      2211
+weighted avg       0.97      0.97      0.97      2211
+
+Confusion Matrix:
+[[ 942   38]
+ [  18 1213]]
+
+--- Support Vector Machine ---
+              precision    recall  f1-score   support
+
+           0       0.96      0.92      0.94       980
+           1       0.94      0.97      0.95      1231
+
+    accuracy                           0.95      2211
+   macro avg       0.95      0.95      0.95      2211
+weighted avg       0.95      0.95      0.95      2211
+
+Confusion Matrix:
+[[ 904   76]
+ [  37 1194]]
+
+--- Naive Bayes ---
+              precision    recall  f1-score   support
+
+           0       0.53      1.00      0.69       980
+           1       1.00      0.28      0.44      1231
+
+    accuracy                           0.60      2211
+   macro avg       0.76      0.64      0.57      2211
+weighted avg       0.79      0.60      0.55      2211
+
+Confusion Matrix:
+[[979   1]
+ [882 349]]
