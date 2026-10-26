@@ -46,12 +46,35 @@ def create_app(config_class=Config):
     @app.route("/", methods=["GET"])
     def index():
         return jsonify({"status": "success", "message": "Backend Running Successfully"})
+        
+    @app.route("/health", methods=["GET"])
+    def health():
+        try:
+            from services.predictor import PredictorService
+            svc = PredictorService()
+            model_loaded = svc.model is not None
+        except Exception:
+            model_loaded = False
+            
+        return jsonify({
+            "status": "healthy" if model_loaded else "degraded",
+            "model_loaded": model_loaded,
+            "model": "Siamese-LSTM-Attention",
+            "model_version": "1.0"
+        })
+
+    from database import init_db
+    init_db()
 
     from routes.predict import predict_bp
     from routes.history import history_bp
+    from routes.enquiries import enquiries_bp
+    from routes.forensics import forensics_bp
 
     app.register_blueprint(predict_bp, url_prefix="/api")
     app.register_blueprint(history_bp, url_prefix="/api")
+    app.register_blueprint(enquiries_bp, url_prefix="/api")
+    app.register_blueprint(forensics_bp, url_prefix="/api")
 
     return app
 

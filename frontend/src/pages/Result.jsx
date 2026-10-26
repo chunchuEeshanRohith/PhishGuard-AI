@@ -6,6 +6,8 @@ import { useApp } from '../context/AppContext';
 import ConfidenceRing from '../components/ConfidenceRing';
 import StatusBadge from '../components/StatusBadge';
 import GlowCard from '../components/GlowCard';
+import AttentionHeatmap from '../components/AttentionHeatmap';
+import ThreatConsensus from '../components/ThreatConsensus';
 
 export default function Result() {
   const { scanResult } = useApp();
@@ -154,6 +156,28 @@ export default function Result() {
                   </div>
                 </div>
               </div>
+
+              {/* Explainable AI: Character Self-Attention Heatmap */}
+              {scanResult.attention_analysis && (
+                <div className="mb-6">
+                  <AttentionHeatmap
+                    attentionData={scanResult.attention_analysis}
+                    prediction={scanResult.prediction}
+                    threatScore={scanResult.threat_score}
+                    url={scanResult.url}
+                  />
+                </div>
+              )}
+
+              {/* Multi-Engine Threat Consensus */}
+              {scanResult.consensus_analysis && (
+                <div className="mb-6">
+                  <ThreatConsensus
+                    consensusData={scanResult.consensus_analysis}
+                    prediction={scanResult.prediction}
+                  />
+                </div>
+              )}
 
               {/* Action buttons */}
               <div className="flex flex-wrap gap-3 pt-4 border-t" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>

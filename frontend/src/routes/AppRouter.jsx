@@ -8,6 +8,8 @@ const About          = lazy(() => import('../pages/About'));
 const Result         = lazy(() => import('../pages/Result'));
 const History        = lazy(() => import('../pages/History'));
 const Contact        = lazy(() => import('../pages/Contact'));
+const Forensics      = lazy(() => import('../pages/Forensics'));
+const Model          = lazy(() => import('../pages/Model'));
 const NotFound       = lazy(() => import('../pages/NotFound'));
 
 // Admin Routes
@@ -31,18 +33,40 @@ function PageLoader() {
   );
 }
 
+const Scanner        = lazy(() => import('../pages/Scanner'));
+
+// Simple Placeholder Component
+function Placeholder({ title }) {
+  return (
+    <div className="min-h-[calc(100vh-80px)] bg-[#0B1120] text-white flex items-center justify-center pt-20 pb-12">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold mb-4">{title}</h1>
+        <p className="text-gray-400">This page is under construction.</p>
+      </div>
+    </div>
+  );
+}
+
 export default function AppRouter() {
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes>
         <Route element={<MainLayout />}>
-          <Route path="/"        element={<Home />} />
-          <Route path="/about"   element={<About />} />
-          <Route path="/result"  element={<Result />} />
-          <Route path="/history" element={<History />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/detect"  element={<Navigate to="/" replace />} />
-          <Route path="*"        element={<NotFound />} />
+          <Route path="/"             element={<Home />} />
+          <Route path="/about"        element={<About />} />
+          <Route path="/scanner"      element={<Scanner />} />
+          <Route path="/models"       element={<Model />} />
+          <Route path="/model"        element={<Model />} />
+          <Route path="/architecture" element={<Model />} />
+          <Route path="/dashboard"    element={<Placeholder title="Dashboard" />} />
+          <Route path="/research"     element={<Placeholder title="Research" />} />
+          <Route path="/team"         element={<Placeholder title="Team" />} />
+          <Route path="/contact"      element={<Contact />} />
+          <Route path="/result"       element={<Result />} />
+          <Route path="/history"      element={<History />} />
+          <Route path="/forensics"    element={<Forensics />} />
+          <Route path="/detect"       element={<Navigate to="/scanner" replace />} />
+          <Route path="*"             element={<NotFound />} />
         </Route>
 
         <Route path="/admin" element={<Navigate to="/admin/login" replace />} />

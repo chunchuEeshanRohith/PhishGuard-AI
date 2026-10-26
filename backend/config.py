@@ -11,8 +11,10 @@ class Config:
 
     # Model locations
     MODELS_DIR = os.path.join(BASE_DIR, "models")
-    MODEL_PATH = os.path.join(MODELS_DIR, "phishing_model.pkl")
-    FEATURE_ORDER_PATH = os.path.join(MODELS_DIR, "feature_order.json")
 
-    # Database
-    DATABASE_PATH = os.path.join(BASE_DIR, "database", "app.db")
+    # Persistent SQLite Database path
+    DATABASE_PATH = os.environ.get("DATABASE_PATH") or os.path.join(BASE_DIR, "data", "phishguard.db")
+
+    # Admin Credentials
+    ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME") or "admin"
+    ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD") or "PhishGuard@2026"
